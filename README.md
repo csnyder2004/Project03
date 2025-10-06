@@ -1,3 +1,5 @@
+My name is Cole Snyder. This project has been created to make a todo list and keep it updated. I have a user story and State tree that describe its functionality and also describe how to interact with it. This is done through github gh-pages. The technologies used include html, css, json, js, jsx, and other various react and redux technologies. I would like to add in more options, interactive background, and personalized menus in the future.
+
 ## User Stories
 
 1. As a user, I can add a new task so that I can track what I need to do.
