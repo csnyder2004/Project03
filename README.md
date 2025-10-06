@@ -40,3 +40,26 @@
    - **Given** I am on `contact`
    - **When** I type in First, Last, Email, and Comments
    - **Then** the form state updates immediately.
+
+## State Tree
+
+The state tree shows what data our Task Management (To-Do) app manages at any moment.
+
+```js
+{
+  todos: [
+    {
+      id: Number,        // unique ID created with Date.now()
+      text: String,      // task description entered by the user
+      done: Boolean      // completion flag (true if checked)
+    }
+  ],
+  filter: "all" | "completed" | "incomplete",  // which tasks are shown
+  contactForm: {        // state for the controlled Contact form
+    first: String,
+    last: String,
+    email: String,
+    comments: String
+  }
+}
+```
