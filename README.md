@@ -1,21 +1,42 @@
-<<<<<<< HEAD
-# React + Vite
+## User Stories
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. As a user, I can add a new task so that I can track what I need to do.
 
-Currently, two official plugins are available:
+   - **Given** I am on `todos`
+   - **When** I type text into the input and press “Add”
+   - **Then** a new todo appears in the list with `done = false`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. As a user, I can mark a task as done, so I can see what’s done.
 
-## React Compiler
+   - **Given** a todo is in the list
+   - **When** I check its checkbox
+   - **Then** the todo shows a line-through it and its `done` state is saved.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+3. As a user, I can delete a task so my list stays clean.
 
-## Expanding the ESLint configuration
+   - **Given** a todo is in the list
+   - **When** I click “Delete”
+   - **Then** the todo is removed from the list.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Project03
-Project 3 for SE Bootcamp
->>>>>>> 68d03f15a7da770b973c39a3a51ded58b5569341
+4. As a user, I can filter tasks (All, Completed, Incomplete) so I can focus.
+
+   - **Given** I have some completed and some incomplete todos
+   - **When** I click “Completed”
+   - **Then** only completed todos are shown (and similarly for “Incomplete”).
+
+5. As a user, my todos persist between visits so I don’t lose my list.
+
+   - **Given** I’ve added or updated todos
+   - **When** I refresh or reopen the app
+   - **Then** the list appears exactly as I left it (stored in `localStorage`).
+
+6. As a user, I can navigate between Todos and Contact pages using the navbar.
+
+   - **Given** the top navigation is visible
+   - **When** I click “Contact”
+   - **Then** I see a controlled contact form at `contact`.
+
+7. As a user, I can fill out the Contact form with my info.
+   - **Given** I am on `contact`
+   - **When** I type in First, Last, Email, and Comments
+   - **Then** the form state updates immediately.
