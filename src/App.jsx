@@ -1,74 +1,103 @@
-import { useEffect, useState } from "react";
+// src/App.jsx
+// Full app with main menu, navbar, and routes
 
-const STORAGE_KEY = "todos:v1";
+import React from "react";
+import { Routes, Route, NavLink, Navigate } from "react-router-dom";
+
+// Pages
+import MainMenu from "./pages/MainMenu.jsx";
+import Todos from "./pages/Todos.jsx";
+import Contact from "./pages/Contact.jsx";
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState("");
-
-  // Load once on mount
-  useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      if (Array.isArray(saved)) setTodos(saved);
-    } catch {}
-  }, []);
-
-  // Save whenever todos change
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-  }, [todos]);
-
-  const addTodo = () => {
-    if (!newTodo.trim()) return;
-    setTodos((prev) => [
-      ...prev,
-      { id: Date.now(), text: newTodo.trim(), done: false },
-    ]);
-    setNewTodo("");
-  };
-
-  const toggleTodo = (id) => {
-    setTodos((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
-    );
-  };
-
-  const removeTodo = (id) => {
-    setTodos((prev) => prev.filter((t) => t.id !== id));
-  };
-
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>React To-Do ✅</h1>
+    <>
+      {/* ===== Top Navigation Bar ===== */}
+      <header style={{ borderBottom: "1px solid #e5e7eb", background: "#fff" }}>
+        <nav
+          style={{
+            maxWidth: 980,
+            margin: "0 auto",
+            padding: "0 16px",
+            height: 56,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            fontFamily: "system-ui, Arial, sans-serif",
+          }}
+        >
+          {/* Brand */}
+          <div style={{ fontWeight: 600 }}>
+            <NavLink to="/" style={{ textDecoration: "none", color: "#111" }}>
+              Task Manager
+            </NavLink>
+          </div>
 
-      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
-        <input
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add a task"
-        />
-        <button onClick={addTodo}>Add</button>
-      </div>
+          {/* Navigation Links */}
+          <ul style={{ listStyle: "none", display: "flex", gap: 12, margin: 0, padding: 0 }}>
+            <li>
+              <NavLink
+                to="/"
+                end
+                style={({ isActive }) => ({
+                  textDecoration: "none",
+                  padding: "6px 10px",
+                  borderRadius: 6,
+                  color: isActive ? "#fff" : "#667",
+                  background: isActive ? "#3b82f6" : "transparent",
+                })}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/todos"
+                style={({ isActive }) => ({
+                  textDecoration: "none",
+                  padding: "6px 10px",
+                  borderRadius: 6,
+                  color: isActive ? "#fff" : "#667",
+                  background: isActive ? "#3b82f6" : "transparent",
+                })}
+              >
+                Todos
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact"
+                style={({ isActive }) => ({
+                  textDecoration: "none",
+                  padding: "6px 10px",
+                  borderRadius: 6,
+                  color: isActive ? "#fff" : "#667",
+                  background: isActive ? "#3b82f6" : "transparent",
+                })}
+              >
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-      <ul style={{ display: "grid", gap: 8, paddingLeft: 0 }}>
-        {todos.map((todo) => (
-          <li key={todo.id} style={{ listStyle: "none" }}>
-            <label style={{ textDecoration: todo.done ? "line-through" : "" }}>
-              <input
-                type="checkbox"
-                checked={todo.done}
-                onChange={() => toggleTodo(todo.id)}
-                style={{ marginRight: 8 }}
-              />
-              {todo.text}
-            </label>
-            <button onClick={() => removeTodo(todo.id)} style={{ marginLeft: 8 }}>
-              ❌
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+      {/* ===== Page Routes ===== */}
+      <main
+        style={{
+          maxWidth: 980,
+          margin: "0 auto",
+          padding: "20px 16px 40px",
+          fontFamily: "system-ui, Arial, sans-serif",
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<MainMenu />} />
+          <Route path="/todos" element={<Todos />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+    </>
   );
 }

@@ -9,6 +9,7 @@ export default function Todos() {
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
 
+  // Load once
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
@@ -16,6 +17,7 @@ export default function Todos() {
     } catch {}
   }, []);
 
+  // Save on change
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
@@ -69,6 +71,13 @@ export default function Todos() {
     if (e.key === "Escape") cancelEdit();
   };
 
+  // --- NEW: clear completed ---
+  const completedCount = todos.filter(t => t.done).length;
+  const clearCompleted = () => {
+    if (completedCount === 0) return;
+    setTodos(prev => prev.filter(t => !t.done));
+  };
+
   const visible = todos.filter((t) =>
     filter === "all" ? true : filter === "completed" ? t.done : !t.done
   );
@@ -87,24 +96,37 @@ export default function Todos() {
         <button onClick={addTodo}>Add</button>
       </div>
 
-      <div className="filters">
+      <div className="row" style={{ justifyContent: "space-between", marginTop: 12 }}>
+        <div className="filters">
+          <button
+            className={filter === "all" ? "active" : ""}
+            onClick={() => setFilter("all")}
+          >
+            All
+          </button>
+          <button
+            className={filter === "completed" ? "active" : ""}
+            onClick={() => setFilter("completed")}
+          >
+            Completed
+          </button>
+          <button
+            className={filter === "incomplete" ? "active" : ""}
+            onClick={() => setFilter("incomplete")}
+          >
+            Incomplete
+          </button>
+        </div>
+
+        {/* NEW: Clear Completed */}
         <button
-          className={filter === "all" ? "active" : ""}
-          onClick={() => setFilter("all")}
+          className="muted"
+          onClick={clearCompleted}
+          disabled={completedCount === 0}
+          aria-disabled={completedCount === 0}
+          title={completedCount === 0 ? "No completed tasks to clear" : `Clear ${completedCount} completed`}
         >
-          All
-        </button>
-        <button
-          className={filter === "completed" ? "active" : ""}
-          onClick={() => setFilter("completed")}
-        >
-          Completed
-        </button>
-        <button
-          className={filter === "incomplete" ? "active" : ""}
-          onClick={() => setFilter("incomplete")}
-        >
-          Incomplete
+          Clear Completed {completedCount > 0 ? `(${completedCount})` : ""}
         </button>
       </div>
 
