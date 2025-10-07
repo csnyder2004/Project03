@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+// src/pages/Todos.jsx
+import { useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "todos:v1";
 
 export default function Todos() {
+  // ---------------- State ----------------
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("all"); // "all" | "completed" | "incomplete"
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
 
-  // Load once
+  // ---------------- Persistence ----------------
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
@@ -17,18 +19,33 @@ export default function Todos() {
     } catch {}
   }, []);
 
-  // Save on change
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
 
+  // ---------------- Derived counts ----------------
+  const { activeCount, completedCount } = useMemo(() => {
+    let active = 0;
+    let done = 0;
+    for (const t of todos) (t.done ? done++ : active++);
+    return { activeCount: active, completedCount: done };
+  }, [todos]);
+
+  const allDone = todos.length > 0 && completedCount === todos.length;
+
+  // ---------------- CRUD actions ----------------
   const addTodo = () => {
-    if (!newTodo.trim()) return;
+    const text = newTodo.trim();
+    if (!text) return;
     setTodos((prev) => [
       ...prev,
-      { id: Date.now(), text: newTodo.trim(), done: false },
+      { id: Date.now(), text, done: false },
     ]);
     setNewTodo("");
+  };
+
+  const onNewTodoKeyDown = (e) => {
+    if (e.key === "Enter") addTodo();
   };
 
   const toggleTodo = (id) => {
@@ -45,7 +62,17 @@ export default function Todos() {
     }
   };
 
-  // Edit handlers
+  const clearCompleted = () => {
+    if (completedCount === 0) return;
+    setTodos((prev) => prev.filter((t) => !t.done));
+  };
+
+  const toggleAll = () => {
+    const shouldCompleteAll = !allDone; // if not all done, complete all; else uncheck all
+    setTodos((prev) => prev.map((t) => ({ ...t, done: shouldCompleteAll })));
+  };
+
+  // ---------------- Edit handlers ----------------
   const startEdit = (todo) => {
     setEditingId(todo.id);
     setEditingText(todo.text);
@@ -71,111 +98,155 @@ export default function Todos() {
     if (e.key === "Escape") cancelEdit();
   };
 
-  // --- NEW: clear completed ---
-  const completedCount = todos.filter(t => t.done).length;
-  const clearCompleted = () => {
-    if (completedCount === 0) return;
-    setTodos(prev => prev.filter(t => !t.done));
-  };
+  // ---------------- Filtering ----------------
+  const visible = useMemo(() => {
+    if (filter === "completed") return todos.filter((t) => t.done);
+    if (filter === "incomplete") return todos.filter((t) => !t.done);
+    return todos;
+  }, [todos, filter]);
 
-  const visible = todos.filter((t) =>
-    filter === "all" ? true : filter === "completed" ? t.done : !t.done
-  );
-
+  // ---------------- Render ----------------
   return (
-    <div>
-      <h2 className="text-2xl font-semibold text-indigo-600">Todos</h2>
+    <div className="container">
+      <h2>Todos</h2>
 
-      <div className="row">
-        <input
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add a task"
-          aria-label="New task"
-        />
-        <button onClick={addTodo}>Add</button>
-      </div>
-
-      <div className="row" style={{ justifyContent: "space-between", marginTop: 12 }}>
-        <div className="filters">
-          <button
-            className={filter === "all" ? "active" : ""}
-            onClick={() => setFilter("all")}
-          >
-            All
-          </button>
-          <button
-            className={filter === "completed" ? "active" : ""}
-            onClick={() => setFilter("completed")}
-          >
-            Completed
-          </button>
-          <button
-            className={filter === "incomplete" ? "active" : ""}
-            onClick={() => setFilter("incomplete")}
-          >
-            Incomplete
+      <div className="todo-wrap">
+        {/* Input row */}
+        <div className="todo-input">
+          <input
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+            onKeyDown={onNewTodoKeyDown}
+            placeholder="Add a new task and press Enter"
+            aria-label="New task"
+          />
+          <button onClick={addTodo} disabled={!newTodo.trim()}>
+            Add
           </button>
         </div>
 
-        {/* NEW: Clear Completed */}
-        <button
-          className="muted"
-          onClick={clearCompleted}
-          disabled={completedCount === 0}
-          aria-disabled={completedCount === 0}
-          title={completedCount === 0 ? "No completed tasks to clear" : `Clear ${completedCount} completed`}
-        >
-          Clear Completed {completedCount > 0 ? `(${completedCount})` : ""}
-        </button>
-      </div>
+        {/* Toolbar: filters, counters, bulk actions */}
+        <div className="toolbar">
+          <div className="filters" role="tablist" aria-label="Filter todos">
+            <button
+              className={filter === "all" ? "active" : ""}
+              onClick={() => setFilter("all")}
+              role="tab"
+              aria-selected={filter === "all"}
+            >
+              All
+            </button>
+            <button
+              className={filter === "completed" ? "active" : ""}
+              onClick={() => setFilter("completed")}
+              role="tab"
+              aria-selected={filter === "completed"}
+            >
+              Completed
+            </button>
+            <button
+              className={filter === "incomplete" ? "active" : ""}
+              onClick={() => setFilter("incomplete")}
+              role="tab"
+              aria-selected={filter === "incomplete"}
+            >
+              Incomplete
+            </button>
+          </div>
 
-      <ul className="list">
-        {visible.map((todo) => (
-          <li key={todo.id} className="item">
-            <div className="left">
-              <input
-                type="checkbox"
-                checked={todo.done}
-                onChange={() => toggleTodo(todo.id)}
-                aria-label={`Mark ${todo.text} ${todo.done ? "incomplete" : "complete"}`}
-              />
+          <div className="counter badge">
+            {activeCount} active · {completedCount} completed
+          </div>
 
-              {editingId === todo.id ? (
+          <div style={{ display: "flex", gap: 8 }}>
+            <button className="ghost" onClick={toggleAll} disabled={todos.length === 0}>
+              {allDone ? "Uncheck All" : "Complete All"}
+            </button>
+            <button
+              className="ghost"
+              onClick={clearCompleted}
+              disabled={completedCount === 0}
+              aria-disabled={completedCount === 0}
+              title={
+                completedCount === 0
+                  ? "No completed tasks to clear"
+                  : `Clear ${completedCount} completed`
+              }
+            >
+              Clear Completed {completedCount > 0 ? `(${completedCount})` : ""}
+            </button>
+          </div>
+        </div>
+
+        {/* List */}
+        <ul className="list" aria-live="polite">
+          {visible.map((todo) => (
+            <li key={todo.id} className="item">
+              <div className="left">
                 <input
-                  className="edit-input"
-                  autoFocus
-                  value={editingText}
-                  onChange={(e) => setEditingText(e.target.value)}
-                  onKeyDown={onEditKeyDown}
-                  onBlur={saveEdit}
-                  aria-label="Edit task text"
+                  type="checkbox"
+                  checked={todo.done}
+                  onChange={() => toggleTodo(todo.id)}
+                  aria-label={`Mark "${todo.text}" ${
+                    todo.done ? "incomplete" : "complete"
+                  }`}
                 />
-              ) : (
-                <label className={todo.done ? "done" : ""}>{todo.text}</label>
-              )}
-            </div>
 
-            <div className="right">
-              {editingId === todo.id ? (
-                <>
-                  <button className="muted" onClick={saveEdit}>Save</button>
-                  <button className="muted" onClick={cancelEdit}>Cancel</button>
-                </>
-              ) : (
-                <>
-                  <button className="muted" onClick={() => startEdit(todo)}>
-                    Edit
-                  </button>
-                  <button className="danger" onClick={() => removeTodo(todo.id)}>
-                    Delete
-                  </button>
-                </>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
+                {editingId === todo.id ? (
+                  <input
+                    className="edit-input"
+                    autoFocus
+                    value={editingText}
+                    onChange={(e) => setEditingText(e.target.value)}
+                    onKeyDown={onEditKeyDown}
+                    onBlur={saveEdit}
+                    aria-label="Edit task text"
+                  />
+                ) : (
+                  <label
+                    className={todo.done ? "done" : ""}
+                    onDoubleClick={() => startEdit(todo)}
+                    title="Double-click to edit"
+                  >
+                    {todo.text}
+                  </label>
+                )}
+              </div>
+
+              <div className="right">
+                {editingId === todo.id ? (
+                  <>
+                    <button className="muted" onClick={saveEdit}>
+                      Save
+                    </button>
+                    <button className="muted" onClick={cancelEdit}>
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button className="muted" onClick={() => startEdit(todo)}>
+                      Edit
+                    </button>
+                    <button
+                      className="danger"
+                      onClick={() => removeTodo(todo.id)}
+                      aria-label={`Delete "${todo.text}"`}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {/* Empty state */}
+        {todos.length === 0 && (
+          <p className="muted">No tasks yet — add your first one above!</p>
+        )}
+      </div>
     </div>
   );
 }
