@@ -1,14 +1,14 @@
 // src/pages/MainMenu.jsx
-import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const STORAGE_KEY = "todos:v1";
 
 export default function MainMenu() {
   const [todos, setTodos] = useState([]);
+  const location = useLocation();
 
-  // Load todos from localStorage (read-only here)
-  useEffect(() => {
+  const loadFromStorage = useCallback(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
       if (Array.isArray(saved)) setTodos(saved);
@@ -16,6 +16,29 @@ export default function MainMenu() {
       // fail silently – menu still renders
     }
   }, []);
+
+  // Initial load + refresh whenever route changes (e.g., returning from /todos)
+  useEffect(() => {
+    loadFromStorage();
+  }, [loadFromStorage, location.pathname]);
+
+  // Also refresh when the tab becomes visible again (e.g., after switching tabs)
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") loadFromStorage();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, [loadFromStorage]);
+
+  // Keep in sync across multiple tabs/windows
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key === STORAGE_KEY) loadFromStorage();
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [loadFromStorage]);
 
   // derive counts
   const { total, active, completed } = useMemo(() => {
@@ -40,7 +63,7 @@ export default function MainMenu() {
         </Link>
       </div>
 
-      {/* helpful descriptions (visually hidden labels can be added if you prefer) */}
+      {/* helpful descriptions */}
       <div className="hidden" id="todos-desc">Manage your tasks, add, edit, and complete items.</div>
       <div className="hidden" id="contact-desc">Send us a message via the contact form.</div>
 

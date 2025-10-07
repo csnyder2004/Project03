@@ -82,45 +82,79 @@ a:hover { text-decoration: underline; }
 /* =========================
    Header / Navbar
    ========================= */
-.top-nav {
+
+/* ===== Enhanced Navbar ===== */
+.navbar {
   position: sticky;
   top: 0;
-  z-index: 50;
-  backdrop-filter: saturate(1.2) blur(6px);
-  background: color-mix(in srgb, var(--bg) 65%, #0a0f1f 35%);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.top-nav nav {
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   height: 64px;
   display: flex;
   align-items: center;
+}
+
+.nav-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  font-family: system-ui, Arial, sans-serif;
 }
 
 .brand a {
-  color: var(--ink);
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.2px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.brand a:hover {
+  color: #93c5fd; /* soft blue */
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 8px;
-  padding: 0; margin: 0;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
-  display: inline-block;
-  color: var(--muted);
-  padding: 8px 12px;
+  color: #ddd;
+  text-decoration: none;
+  padding: 8px 14px;
   border-radius: 999px;
-  transition: background var(--t), color var(--t), transform var(--t);
+  transition: all 0.2s ease;
 }
-.nav-links a:hover { color: var(--ink); background: rgba(255,255,255,0.08); }
-.nav-links a.active { color: #0b1020; background: var(--brand); transform: translateY(-1px); }
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.nav-links a.active {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 0 10px #3b82f6aa;
+  transform: translateY(-1px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 720px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}
 
 /* =========================
    Main Layout
@@ -401,6 +435,6 @@ body::before {
 /* Apply to all main content containers */
 .container, main, .contact-card, .todo-wrap, .menu-hero {
   opacity: 0;
-  animation: fadeIn 1.2s ease-out forwards;
-  animation-delay: 0.3s;
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: 0s;
 }

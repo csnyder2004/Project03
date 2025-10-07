@@ -1,26 +1,54 @@
 // src/pages/Todos.jsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const STORAGE_KEY = "todos:v1";
 
+/* Validate the stored shape to avoid overwriting with bad data */
+function isValidTodos(value) {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (t) =>
+        t &&
+        typeof t.id === "number" &&
+        typeof t.text === "string" &&
+        typeof t.done === "boolean"
+    )
+  );
+}
+
+/* Load once, synchronously, to avoid "save [] first" race */
+function loadTodos() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return isValidTodos(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
 export default function Todos() {
   // ---------------- State ----------------
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => loadTodos()); // load synchronously
   const [newTodo, setNewTodo] = useState("");
   const [filter, setFilter] = useState("all"); // "all" | "completed" | "incomplete"
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
 
-  // ---------------- Persistence ----------------
+  // ---------------- Persistence (save only after mount) ----------------
+  const didMount = useRef(false);
   useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true; // skip first run to avoid re-writing the same data
+      return;
+    }
     try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      if (Array.isArray(saved)) setTodos(saved);
-    } catch {}
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+    } catch (e) {
+      console.error("[save] failed to write todos:", e);
+    }
   }, [todos]);
 
   // ---------------- Derived counts ----------------
@@ -37,10 +65,7 @@ export default function Todos() {
   const addTodo = () => {
     const text = newTodo.trim();
     if (!text) return;
-    setTodos((prev) => [
-      ...prev,
-      { id: Date.now(), text, done: false },
-    ]);
+    setTodos((prev) => [...prev, { id: Date.now(), text, done: false }]);
     setNewTodo("");
   };
 
