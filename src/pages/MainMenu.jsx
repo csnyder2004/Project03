@@ -109,7 +109,7 @@ export default function MainMenu() {
 
       {/* small footer line (optional) */}
       <div className="footer">
-        Built with React + Vite · Local-only demo (no server required)
+        Built with React + Vite
       </div>
     </div>
   );

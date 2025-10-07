@@ -1,0 +1,152 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="28.2.5" pages="4">
+  <diagram name="Main Menu" id="sVE4FR3b86Itg6HGkc6D">
+    <mxGraphModel dx="2852" dy="1658" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ofxEPiOMzlYYWa-Dgdn9-2" value="Top Navigation Bar" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#94a3b8;fillColor=#0f172a;fontColor=#e2e8f0;" parent="1" vertex="1">
+          <mxGeometry x="60" y="30" width="900" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofxEPiOMzlYYWa-Dgdn9-3" value="Main Menu Content&lt;br&gt;– Welcome&lt;br&gt;– Primary Buttons: &quot;Go to Todos&quot; &amp;amp; &quot;Go to Contact&quot;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#111827;fontColor=#e5e7eb;" parent="1" vertex="1">
+          <mxGeometry x="110" y="100" width="800" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="ofxEPiOMzlYYWa-Dgdn9-4" value="Go to Todos" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#3b82f6;fillColor=#1f2937;fontColor=#e5e7eb;" parent="1" vertex="1">
+          <mxGeometry x="270" y="470" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ofxEPiOMzlYYWa-Dgdn9-5" value="Go to Contact" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#a78bfa;fillColor=#1f2937;fontColor=#e5e7eb;" parent="1" vertex="1">
+          <mxGeometry x="520" y="470" width="180" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ofxEPiOMzlYYWa-Dgdn9-6" value="Footer" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#94a3b8;fillColor=#0f172a;fontColor=#cbd5e1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="540" width="900" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-1" value="Top Navigation Bar" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#cbd5e1;fillColor=#0f172a;fontColor=#e2e8f0;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="30" width="900" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-2" value="Add Task Input + Add Button" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#94a3b8;fillColor=#1e293b;fontColor=#e2e8f0;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="100" width="800" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-3" value="Filters: All | Completed | Incomplete" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#94a3b8;fillColor=#1e293b;fontColor=#e2e8f0;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="170" width="800" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-4" value="Toolbar: Complete All | Clear Completed | Counters" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#0b1220;fontColor=#e2e8f0;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="230" width="800" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-5" value="Task List (Todo Items)&#xa;• Checkbox, text, edit/delete&#xa;• Inline edit (Enter/Esc)" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#111827;fontColor=#f1f5f9;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="290" width="800" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-6" value="Persistent storage: localStorage (todos:v1)" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#94a3b8;" vertex="1" parent="1">
+          <mxGeometry x="790" y="1260" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-7" value="Top Navigation Bar" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#cbd5e1;fillColor=#0f172a;fontColor=#e2e8f0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="680" width="900" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-8" value="Contact Form&#xa;• First Name&#xa;• Last Name&#xa;• Email&#xa;• Message&#xa;• Submit Button" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#94a3b8;fillColor=#1e293b;fontColor=#f1f5f9;" vertex="1" parent="1">
+          <mxGeometry x="120" y="750" width="800" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-9" value="Success Banner (appears after submission)" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#22c55e;fillColor=#064e3b;fontColor=#bbf7d0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1120" width="800" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NinGusil3KZGyXbc8zEQ-10" value="Form uses controlled inputs + basic validation" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#94a3b8;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1190" width="400" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Todos Page" id="wU8p6oHbaKGT9pWm8mtK">
+    <mxGraphModel dx="1280" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Top Nav -->
+        <mxCell id="t1" value="Top Navigation Bar" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#94a3b8;fillColor=#0f172a;fontColor=#e2e8f0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="50" width="900" height="60" as="geometry" />
+        </mxCell>
+        <!-- Input Row -->
+        <mxCell id="t2" value="Add Task Input + Add Button" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#111827;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="150" y="140" width="800" height="70" as="geometry" />
+        </mxCell>
+        <!-- Filters -->
+        <mxCell id="t3" value="Filters: All | Completed | Incomplete" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#111827;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="150" y="225" width="800" height="60" as="geometry" />
+        </mxCell>
+        <!-- Toolbar -->
+        <mxCell id="t4" value="Toolbar: Clear Completed | Complete All | Counters" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#0b1220;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="150" y="295" width="800" height="50" as="geometry" />
+        </mxCell>
+        <!-- Task List -->
+        <mxCell id="t5" value="Task List (Todo Items)&#xa;• Row: checkbox, text, edit/delete&#xa;• Inline edit (Enter/Esc/blur)" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#111827;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="150" y="355" width="800" height="200" as="geometry" />
+        </mxCell>
+        <!-- Page notes -->
+        <mxCell id="t6" value="LocalStorage persistence (todos:v1)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontColor=#94a3b8;" vertex="1" parent="1">
+          <mxGeometry x="150" y="570" width="300" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Contact Page" id="X8BVeDUJR1KVEfZiNSV6">
+    <mxGraphModel dx="1280" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Top Nav -->
+        <mxCell id="c1" value="Top Navigation Bar" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#94a3b8;fillColor=#0f172a;fontColor=#e2e8f0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="50" width="900" height="60" as="geometry" />
+        </mxCell>
+        <!-- Contact Form Card -->
+        <mxCell id="c2" value="Contact Form&#xa;– First Name&#xa;– Last Name&#xa;– Email&#xa;– Comments&#xa;– Submit" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#64748b;fillColor=#111827;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="150" y="140" width="800" height="340" as="geometry" />
+        </mxCell>
+        <!-- Success Message (optional) -->
+        <mxCell id="c3" value="Success Banner (after submit)" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#22c55e;fillColor=#0f3e2a;fontColor=#bbf7d0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="490" width="800" height="50" as="geometry" />
+        </mxCell>
+        <!-- Page notes -->
+        <mxCell id="c4" value="Controlled inputs + basic validation" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontColor=#94a3b8;" vertex="1" parent="1">
+          <mxGeometry x="150" y="560" width="320" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Flow" id="sNZaCfBsUNUM8W8M_f4_">
+    <mxGraphModel dx="1280" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Nodes -->
+        <mxCell id="f1" value="Main Menu (Home)" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#3b82f6;fillColor=#0b1220;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="160" y="240" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="Todos Page" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#3b82f6;fillColor=#0b1220;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="480" y="140" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="Contact Page" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#3b82f6;fillColor=#0b1220;fontColor=#e5e7eb;" vertex="1" parent="1">
+          <mxGeometry x="480" y="340" width="220" height="80" as="geometry" />
+        </mxCell>
+        <!-- Arrows -->
+        <mxCell id="e1" value="Go to Todos" style="endArrow=block;rounded=0;html=1;strokeColor=#60a5fa;fontColor=#e5e7eb;" edge="1" parent="1" source="f1" target="f2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="280" as="sourcePoint" />
+            <mxPoint x="480" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="Go to Contact" style="endArrow=block;rounded=0;html=1;strokeColor=#60a5fa;fontColor=#e5e7eb;" edge="1" parent="1" source="f1" target="f3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="280" as="sourcePoint" />
+            <mxPoint x="480" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="Back to Home" style="endArrow=block;rounded=0;html=1;dashed=1;dashPattern=6 6;strokeColor=#94a3b8;fontColor=#e5e7eb;" edge="1" parent="1" source="f2" target="f1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="Back to Home" style="endArrow=block;rounded=0;html=1;dashed=1;dashPattern=6 6;strokeColor=#94a3b8;fontColor=#e5e7eb;" edge="1" parent="1" source="f3" target="f1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Legend -->
+        <mxCell id="f4" value="Flow Legend:&#xa;Solid arrow = primary navigation&#xa;Dashed arrow = return to Home" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontColor=#94a3b8;" vertex="1" parent="1">
+          <mxGeometry x="760" y="120" width="300" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

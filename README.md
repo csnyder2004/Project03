@@ -68,35 +68,7 @@ The state tree shows what data our Task Management (To-Do) app manages at any mo
 
 ## Wireframes
 
-//Todos
-┌──────────────────────────────────────────────────────────────┐
-│ Task Manager [Todos][Contact]│
-├──────────────────────────────────────────────────────────────┤
-│ + New Task: [__________________________] [ Add ] │
-│ │
-│ Filters: ( All ) ( Completed ) ( Incomplete ) │
-│ │
-│ [ ] Task item text here [Delete] │
-│ [✔] Completed task (strikethrough) [Delete] │
-│ [ ] Another task [Delete] │
-│ │
-│ (footer / status optional) │
-└──────────────────────────────────────────────────────────────┘
-
-//Contact
-┌──────────────────────────────────────────────────────────────┐
-│ Task Manager [Todos][Contact]│
-├──────────────────────────────────────────────────────────────┤
-│ First Name: [] Last Name: [] │
-│ Email: [______________________________] │
-│ Comments: ▼ │
-│ ┌──────────────────────────────────────────────────────┐ │
-│ │ │ │
-│ │ │ │
-│ └──────────────────────────────────────────────────────┘ │
-│ │
-│ [ Send ] │
-└──────────────────────────────────────────────────────────────┘
+See Attached
 
 ## Component List
 
