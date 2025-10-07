@@ -97,3 +97,25 @@ The state tree shows what data our Task Management (To-Do) app manages at any mo
 │ │
 │ [ Send ] │
 └──────────────────────────────────────────────────────────────┘
+
+## Component List
+
+These React components make up the Task Management To Do application that I made.
+
+### Containers
+
+> These things hold state or logic and pass data down.
+
+1. **App** — Root component; provides navigation and route layout.
+2. **Todos** — Manages `todos`, `filter`, and local Storage..
+3. **Contact** — Manages first, last, email, and comments fields for the form.
+
+### Presentational Components
+
+> Stateless or nearly stateless components that display UI.
+
+1. **TodoItem** — (planned) Renders a single todo item with checkbox and delete button.
+2. **TodoList** — (planned) Maps through todos and displays a list of `TodoItem`s.
+3. **FilterButtons** — (planned) Renders All / Completed / Incomplete filters.
+4. **Navbar** — Displays top navigation links between `todos` and `contact`.
+5. **FormField** — (planned) wrapper for input and label pairs in the contact form.
