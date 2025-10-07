@@ -84,7 +84,7 @@ export default function Todos() {
 
   return (
     <div>
-      <h2>Todos</h2>
+      <h2 className="text-2xl font-semibold text-indigo-600">Todos</h2>
 
       <div className="row">
         <input

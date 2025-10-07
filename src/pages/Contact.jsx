@@ -36,8 +36,11 @@ export default function Contact() {
 
   // ========== Render ==========
   return (
+
     <div style={{ maxWidth: 600, margin: "0 auto", fontFamily: "system-ui" }}>
       <h2>Contact Us</h2>
+      
+      
       <p>We’d love to hear from you. Fill out the form below:</p>
 
       <form
@@ -136,5 +139,6 @@ export default function Contact() {
         </p>
       )}
     </div>
+ 
   );
 }
