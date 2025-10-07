@@ -45,7 +45,7 @@ export default function Contact() {
                 name="first"
                 value={form.first}
                 onChange={handleChange}
-                placeholder="Jane"
+                placeholder="John"
               />
             </label>
 
@@ -68,7 +68,7 @@ export default function Contact() {
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="jane@example.com"
+              placeholder="john@example.com"
             />
           </label>
 
