@@ -1,7 +1,8 @@
 // src/pages/Contact.jsx
+/* global fetch */
 import React, { useState } from "react";
 
-// Replace with your Formspree form ID
+
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpwyjyjd";
 
 export default function Contact() {
@@ -70,7 +71,7 @@ export default function Contact() {
           We’d love to hear from you. Fill out the form below and we’ll get back to you soon.
         </p>
 
-        {/* We keep action/method for no-JS fallback, but preventDefault + fetch handles the JS path */}
+        {/*keep method for no-JS fallback, but preventDefault + fetch handles the JS path */}
         <form
           onSubmit={handleSubmit}
           action={FORMSPREE_ENDPOINT}
