@@ -1,3 +1,4 @@
+/* eslint-env browser */
 // src/pages/MainMenu.jsx
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -53,19 +54,23 @@ export default function MainMenu() {
       <h1>Welcome to Task Manager ✅</h1>
       <p className="muted">Lightweight, fast, and focused on what matters.</p>
 
-      {/* primary actions */}
+      {/* primary actions — links styled as buttons (no nested interactive elements) */}
       <div className="menu-actions">
-        <Link to="/todos" aria-label="Go to Todos">
-          <button aria-describedby="todos-desc">Go to Todos</button>
+        <Link to="/todos" aria-label="Go to Todos" className="btn">
+          Go to Todos
         </Link>
-        <Link to="/contact" aria-label="Go to Contact">
-          <button className="ghost" aria-describedby="contact-desc">Go to Contact</button>
+        <Link to="/contact" aria-label="Go to Contact" className="btn ghost">
+          Go to Contact
         </Link>
       </div>
 
-      {/* helpful descriptions */}
-      <div className="hidden" id="todos-desc">Manage your tasks, add, edit, and complete items.</div>
-      <div className="hidden" id="contact-desc">Send us a message via the contact form.</div>
+      {/* helpful descriptions (visual only) */}
+      <div className="hidden" id="todos-desc">
+        Manage your tasks, add, edit, and complete items.
+      </div>
+      <div className="hidden" id="contact-desc">
+        Send us a message via the contact form.
+      </div>
 
       {/* snapshot card */}
       <section
@@ -98,23 +103,23 @@ export default function MainMenu() {
         </div>
 
         <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-          <Link to="/todos">
-            <button>{total ? "Open Todos" : "Start Your First Todo"}</button>
+          <Link to="/todos" className="btn">
+            {total ? "Open Todos" : "Start Your First Todo"}
           </Link>
-          <Link to="/contact">
-            <button className="ghost">Contact Us</button>
+          <Link to="/contact" className="btn ghost">
+            Contact Us
           </Link>
         </div>
       </section>
 
-      {/* small footer line (optional) */}
-      <div className="footer">
-        Built with React + Vite
-      </div>
+      {/* small footer line */}
+      <div className="footer">Built with React + Vite</div>
     </div>
   );
 }
 
+// tiny stat card (no prop-types dependency; validator-safe)
+// eslint-disable-next-line react/prop-types
 function Stat({ label, value }) {
   return (
     <div
